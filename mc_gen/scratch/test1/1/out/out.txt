@@ -1,0 +1,10 @@
+hello, grid.
+HOST = spinquestgpvm01.fnal.gov
+/seaquest/users/mhossain/Fun4AllRUSFileManager/mc_gen/scratch/test1/1
+total 3.0K
+-rw-r--r-- 1 mhossain 500  14K Dec 29 01:39 Fun4Sim.C
+-rwxr-xr-x 1 mhossain 500 1.3K Dec 29 01:42 gridrun.sh
+drwxr-xr-x 2 mhossain 500    3 Dec 29 01:42 input
+-rw-r--r-- 1 mhossain 500  212 Dec 29 01:42 log_gridrun.txt
+drwxr-xr-t 2 mhossain 500    3 Dec 29 01:42 out
+-rw-r--r-- 1 mhossain 500  115 Dec 29 01:42 out.txt
