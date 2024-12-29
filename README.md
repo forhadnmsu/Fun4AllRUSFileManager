@@ -1,10 +1,14 @@
+## Goal
+We are introducing a new file format to the Fun4All server for the convenience of its users. Unlike formats such as DST or the E906 SRaw ROOT file, which require dynamic libraries or proper dictionaries for data read/write operations on another computer, we have introduced a ROOT-based file format called **RUS (ROOT Universal Structure)**. This format simplifies the process by eliminating the need for specific libraries or dictionaries other than ROOT. For example, an analyzer can use **Fun4AllRUSEventOutputManager** to access data from the Fun4All Server in the RUS format, perform any necessary preprocessing, and then register the data through **Fun4AllRUSEventInputManager** for post-processing tasks such as reconstruction, vertexing, and more.
+
+
 ## Fun4AllRUSEventInputManager
 
-The `Fun4AllRUSEventInputManager` is an input file manager within the Fun4All framework, designed to handle and register various types of input data, including triggers, hits, true track information, and event details, from a ROOT file. It supports a wide range of data formats, such as integers, doubles, and booleans, and can store this data in flat, vector, or array formats. Set `SetMCMode` to `true` if you want to include true track variables in the RUS file for simulated data. 
+The `Fun4AllRUSEventInputManager` is an input file manager within the Fun4All framework, designed to handle and register various types of input data, including triggers, hits, true track information, and event details, from a ROOT file. It supports a wide range of data formats, such as integers, doubles, and booleans, and can store this data in flat, vector, or array formats. Set `SetMCMode` in your macro to `true` if you want to include true track variables in the RUS file for simulated data. 
 
 ## Fun4AllRUSEventOutputManager
 
-The `Fun4AllRUSEventOutputManager` is an output file manager within the Fun4All framework, designed to handle and register various types of input data, including triggers, hits, true/reco track or dimuon information, and event details, from a ROOT file. It supports a wide range of data formats, such as integers, doubles, and booleans, and can store this data in flat, vector, or array formats. Set `SetMCMode` to `true` if you want to include true variables in the RUS file for simulated data.
+The `Fun4AllRUSEventOutputManager` is an output file manager within the Fun4All framework, designed to handle and register various types of input data, including triggers, hits, true/reco track or dimuon information, and event details, from a ROOT file. It supports a wide range of data formats, such as integers, doubles, and booleans, and can store this data in flat, vector, or array formats. Set `SetMCMode` in your macro to `true` if you want to include true variables in the RUS file for simulated data.
 
 ### Instructions for Adding Reconstructed Variables to RUS File
 
@@ -16,10 +20,6 @@ To include reconstructed variables in your RUS file, follow these steps:
 
 2. **Enable reconstruction mode:**
    - Set `SetRecoMode` to `true` to add the reconstructed variables.
-
-
-## Goal
-The Fun4All framework does not support random indexing in the Fun4All event processing server. Therefore, translating the data into a convenient format enables us to perform pre- and post-processing using the input/output managers.
 
 # Updated Variable Names and Types
 
