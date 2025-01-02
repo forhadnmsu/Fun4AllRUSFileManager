@@ -121,7 +121,6 @@ int Fun4Sim(const int nevent = 10)
     hr->insert_particle_filter_pid(-13);
     se->registerSubsystem(hr);
   }
-
   // multi particle gun
   if(gen_particle) {
     PHG4SimpleEventGenerator *genp = new PHG4SimpleEventGenerator("MUP");
@@ -129,9 +128,9 @@ int Fun4Sim(const int nevent = 10)
     genp->add_particles("mu+", nmu);  // mu+,e+,proton,pi+,Upsilon
     if (SQ_vtx_gen) genp->enableLegacyVtxGen();
     else{
-      genp->set_vertex_distribution_function(PHG4SimpleEventGenerator::Uniform,
-        PHG4SimpleEventGenerator::Uniform,
-        PHG4SimpleEventGenerator::Uniform);
+      genp->set_vertex_distribution_function(PHG4SimpleEventGenerator::Gaus,
+        PHG4SimpleEventGenerator::Gaus,
+        PHG4SimpleEventGenerator::Gaus);
       genp->set_vertex_distribution_mean(0.0, 0.0, target_coil_pos_z);
       genp->set_vertex_distribution_width(0.0, 0.0, 0.0);
       genp->set_vertex_size_function(PHG4SimpleEventGenerator::Uniform);
@@ -140,15 +139,14 @@ int Fun4Sim(const int nevent = 10)
     if(FMAGSTR>0)
       genp->set_pxpypz_range(-6,6, -3,3, 10,100);
     else
-      genp->set_pxpypz_range(-4.0,2.5, -3,3, 10,100);
+      genp->set_pxpypz_range(-6.0,1.0, -4,4,  10, 80);
    
-    genp->set_pt_range(0.0,4.0, 0.6);
-    genp->set_eta_range(2.0, 6.0); 
+    //genp->set_pt_range(0.0,4.0, 0.6);
+    //genp->set_eta_range(2.0, 6.0); 
     genp->Verbosity(0);
     se->registerSubsystem(genp);
   }
-
-
+/*
 
   if(gen_particle) {
     PHG4SimpleEventGenerator *genm = new PHG4SimpleEventGenerator("MUM");
@@ -167,24 +165,25 @@ int Fun4Sim(const int nevent = 10)
     if(FMAGSTR>0)
       genm->set_pxpypz_range(-6,6, -3,3, 10,100);
     else
-      genm->set_pxpypz_range(-2.5,4, -3,3, 10,100);
-    genm->set_pt_range(0.0,4.0, 0.6);
-    genm->set_eta_range(2.0, 6.0);
+      genm->set_pxpypz_range(-1,6, -4,4, 10,80);
+    //genm->set_pt_range(0.0,4.0, 0.6);
+    //genm->set_eta_range(2.0, 6.0);
     genm->Verbosity(0);
     se->registerSubsystem(genm);
   }
+*/
 
   // E906LegacyGen
   if(gen_e906dim){
     SQPrimaryParticleGen *e906legacy = new  SQPrimaryParticleGen();
     const bool pythia_gen = false;
-    const bool drellyan_gen = true;
-    const bool JPsi_gen = false;
+    const bool drellyan_gen = false;
+    const bool JPsi_gen = true;
     const bool Psip_gen = false;  
 
     if(drellyan_gen){
       e906legacy->set_xfRange(0.1, 0.5); //[-1.,1.]
-      e906legacy->set_massRange(1.0, 4.0);
+      e906legacy->set_massRange(1.0, 8.0);
       e906legacy->enableDrellYanGen();
     }
     if(Psip_gen){ 
@@ -252,11 +251,10 @@ int Fun4Sim(const int nevent = 10)
  /// Save only events that are in the geometric acceptance.
   SQGeomAcc* geom_acc = new SQGeomAcc();
   //geom_acc->SetMuonMode(SQGeomAcc::PAIR); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
-  geom_acc->SetMuonMode(SQGeomAcc::PAIR_TBBT); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
+  geom_acc->SetMuonMode(SQGeomAcc::SINGLE_T); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
   geom_acc->SetPlaneMode(SQGeomAcc::HODO_CHAM); // HODO, CHAM or HODO_CHAM
   geom_acc->SetNumOfH1EdgeElementsExcluded(4); // Exclude 4 elements at H1 edges
   se->registerSubsystem(geom_acc);
-
   // Make SQ nodes for truth info
   se->registerSubsystem(new TruthNodeMaker());
 
@@ -302,12 +300,12 @@ int Fun4Sim(const int nevent = 10)
   //reco->add_eval_list(2);             //include station-3+/- in eval tree for debuging
   //reco->add_eval_list(1);             //include station-2 in eval tree for debugging
   se->registerSubsystem(reco);
-*/
-  //VertexFit* vertexing = new VertexFit();
+
+  VertexFit* vertexing = new VertexFit();
   //vertexing->enable_fit_target_center(); //uncomment if you want to fit in the target center
   //vertexing->enableOptimization(); //uncomment if you want to fit according to new optimization formula
-  //se->registerSubsystem(vertexing);
-
+  se->registerSubsystem(vertexing);
+*/
   //SQVertexing* vtx = new SQVertexing();
   //vtx->set_legacy_rec_container(true);
   //se->registerSubsystem(vtx);
@@ -332,8 +330,8 @@ int Fun4Sim(const int nevent = 10)
   ///////////////////////////////////////////
 
   // DST output manager
-  //Fun4AllDstOutputManager *out = new Fun4AllDstOutputManager("DSTOUT", "DST.root");
-  //se->registerOutputManager(out);
+  Fun4AllDstOutputManager *out = new Fun4AllDstOutputManager("DSTOUT", "DST.root");
+  se->registerOutputManager(out);
 
   //if(gen_pythia8 && !read_hepmc) {
   //  Fun4AllHepMCOutputManager *out = new Fun4AllHepMCOutputManager("HEPMCOUT", "hepmcout.txt");
@@ -341,16 +339,16 @@ int Fun4Sim(const int nevent = 10)
   //  se->registerOutputManager(out);
   //}
 
-        //RUS output manager
-        Fun4AllRUSEventOutputManager* tree = new Fun4AllRUSEventOutputManager();
-        tree->Verbosity(100);
-        tree->SetTreeName("tree");
-        tree->SetMCMode(true);
-        tree->SetDataTriggerEmu(false); //turn this one true if you turn off SetMCTriggerEmu
-        tree->SetMCTriggerEmu(false);
-        tree->SetRecoMode(false);
-        tree->SetFileName("RUS.root");
-        se->registerOutputManager(tree);
+  //RUS output manager
+  Fun4AllRUSEventOutputManager* tree = new Fun4AllRUSEventOutputManager();
+  tree->Verbosity(100);
+  tree->SetTreeName("tree");
+  tree->SetMCMode(true);
+  tree->SetDataTriggerEmu(false); //turn this one true if you turn off SetMCTriggerEmu
+  tree->SetMCTriggerEmu(false);
+  tree->SetRecoMode(false);
+  tree->SetFileName("RUS.root");
+  se->registerOutputManager(tree);
 
 
   const bool count_only_good_events = false;

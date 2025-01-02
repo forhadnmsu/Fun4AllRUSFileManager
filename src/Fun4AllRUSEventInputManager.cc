@@ -165,7 +165,6 @@ void Fun4AllRUSEventInputManager::VectToE1039() {
 	}
 
 	if(mc_mode==true){
-		cout << "starts the true track vec size: " << mc_track_id->size()<<endl;
 		for (size_t i = 0; i < mc_track_id->size(); ++i) {
 			SQTrack* trk = new SQTrack_v1();
 

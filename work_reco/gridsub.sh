@@ -1,13 +1,13 @@
 #!/bin/bash
 DIR_MACRO=$(dirname $(readlink -f $BASH_SOURCE))
-DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in
+DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in/BT
 LIST_VEC=list_vec.txt # File containing the list of input files
 
-JOB_NAME=reco_vect_dec29
+JOB_NAME=COMB_BT_MC_JAN01
 DO_OVERWRITE=no
 USE_GRID=no
 FORCE_PNFS=no
-N_EVT=2000
+N_EVT=0
 N_JOB_MAX=0
 OPTIND=1
 while getopts ":n:ogpm:" OPT ; do

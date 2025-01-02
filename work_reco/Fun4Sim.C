@@ -43,7 +43,7 @@ int Fun4Sim(const string Vect_in, const string DST_out, const int n_evt=20){
 
 	SQReco* reco = new SQReco();
 	reco->Verbosity(1);
-	//reco->set_legacy_rec_container(true); // default = true
+	reco->set_legacy_rec_container(false); 
 	reco->set_geom_file_name((string)gSystem->Getenv("E1039_RESOURCE") + "/geometry/geom_run005433.root");
 	reco->set_enable_KF(true);
 	reco->setInputTy(SQReco::E1039);
@@ -56,13 +56,11 @@ int Fun4Sim(const string Vect_in, const string DST_out, const int n_evt=20){
 
 	SQVertexing* vtx = new SQVertexing();
 	vtx->Verbosity(1);
-	vtx->set_legacy_rec_container(true); // default = false
 	se->registerSubsystem(vtx);
 
 
 	Fun4AllRUSEventInputManager* in = new Fun4AllRUSEventInputManager("VectIn");
 	in->Verbosity(99);
-	//in->enable_E1039_translation();
 	in->set_tree_name("tree");
 	in->SetMCMode(true);
 	in->fileopen(Vect_in);
@@ -71,9 +69,8 @@ int Fun4Sim(const string Vect_in, const string DST_out, const int n_evt=20){
 	///////////////////////////////////////////
 	// Output
 	// DST output manager
-	Fun4AllDstOutputManager *out = new Fun4AllDstOutputManager("DSTOUT", "DST.root");
-	se->registerOutputManager(out);
-
+	//Fun4AllDstOutputManager *out = new Fun4AllDstOutputManager("DSTOUT", "DST.root");
+	//se->registerOutputManager(out);
 	//RUS output manager
         Fun4AllRUSEventOutputManager* tree = new Fun4AllRUSEventOutputManager();
         tree->Verbosity(100);
@@ -84,7 +81,6 @@ int Fun4Sim(const string Vect_in, const string DST_out, const int n_evt=20){
         tree->SetRecoMode(true);
         tree->SetFileName("RUS.root");
         se->registerOutputManager(tree);
-
 
 	se->run(n_evt);
 	se->End();

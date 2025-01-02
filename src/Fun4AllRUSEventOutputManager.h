@@ -15,7 +15,8 @@ class SQEvent;
 class SQSpillMap;
 class SQHitVector;
 class SQTrackVector;
-class SRecEvent;
+class SQTrackVector;
+class SQDimuonVector;
 
 
 class Fun4AllRUSEventOutputManager : public Fun4AllOutputManager {
@@ -29,8 +30,17 @@ public:
     void ResetBranches();
     void SetMCMode(bool enable) { mc_mode = enable; }
     void SetRecoMode(bool enable) { reco_mode = enable; }
-    void SetDataTriggerEmu(bool enable) { data_trig_mode = enable; }
-    void SetMCTriggerEmu(bool enable) { mc_trig_mode = enable; }
+    void SetDataTriggerEmu(bool enable) { 
+	    data_trig_mode = enable; 
+	    mc_trig_mode = !enable; // Automatically disable mc_trig_mode when data_trig_mode is enabled
+    }
+
+    void SetMCTriggerEmu(bool enable) { 
+	    mc_trig_mode = enable; 
+	    data_trig_mode = !enable; // Automatically disable data_trig_mode when mc_trig_mode is enabled
+   }
+
+
 protected:
     int OpenFile(PHCompositeNode* startNode);
     void CloseFile();
@@ -49,7 +59,8 @@ private:
     SQHitVector* m_hit_vec;
     SQHitVector* m_trig_hit_vec;
     SQTrackVector * m_vec_trk;
-    SRecEvent*   m_srec;
+    SQTrackVector*  m_sq_trk_vec;
+    SQDimuonVector* m_sq_dim_vec;
 
 UtilTrigger::TrigRoadset m_rs;
 bool mc_mode;
@@ -81,12 +92,12 @@ std::vector<bool> triggerHitsInTime;
 // MC track data
 std::vector<int> mc_track_charges;
 std::vector<int> mc_track_id;
-std::vector<float> mc_pos_vtx_x;
-std::vector<float> mc_pos_vtx_y;
-std::vector<float> mc_pos_vtx_z;
-std::vector<float> mc_mom_vtx_px;
-std::vector<float> mc_mom_vtx_py;
-std::vector<float> mc_mom_vtx_pz;
+std::vector<double> mc_pos_vtx_x;
+std::vector<double> mc_pos_vtx_y;
+std::vector<double> mc_pos_vtx_z;
+std::vector<double> mc_mom_vtx_px;
+std::vector<double> mc_mom_vtx_py;
+std::vector<double> mc_mom_vtx_pz;
 
 //Dimuon variables for MC or Data
 std::vector<double> dimuon_vtx_x;
@@ -106,6 +117,13 @@ std::vector<double> mu_plus_vtx_z;
 std::vector<double> mu_minus_vtx_x;
 std::vector<double> mu_minus_vtx_y;
 std::vector<double> mu_minus_vtx_z;
+
+std::vector<double> mu_plus_vtx_px;
+std::vector<double> mu_plus_vtx_py;
+std::vector<double> mu_plus_vtx_pz;
+std::vector<double> mu_minus_vtx_px;
+std::vector<double> mu_minus_vtx_py;
+std::vector<double> mu_minus_vtx_pz;
 
 std::vector<double> mu_plus_chi2_target;
 std::vector<double> mu_plus_chi2_dump;

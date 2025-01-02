@@ -1,4 +1,4 @@
-R__LOAD_LIBRARY(libfun4all_vect_file_manager)
+R__LOAD_LIBRARY(libfun4all_rus_file_manager)
 
 int Fun4uDst(const int   n_dst_ana=0,
                const char* fn_list_dst="list_dst.txt",
@@ -6,7 +6,7 @@ int Fun4uDst(const int   n_dst_ana=0,
 {
   Fun4AllServer* se = Fun4AllServer::instance();
   //se->Verbosity(1);
-  Fun4AllInputManager *in = new Fun4AllDstInputManager("SimDst");
+  Fun4AllInputManager *in = new Fun4AllDstInputManager("uDst");
   se->registerInputManager(in);
 
   /// Use these modules to debug simulation events.
@@ -20,10 +20,13 @@ int Fun4uDst(const int   n_dst_ana=0,
   se->registerOutputManager(out);
   out->AddNode("SQHitVector");
   out->AddNode("SQEvent");
-  out->AddNode("SRecEvent");
-  out->AddNode("SQMCEvent");
-  out->AddNode("SQTruthTrackVector");
-  out->AddNode("SQTruthDimuonVector");
+  out->AddNode("SQTrackVector");
+  out->AddNode("SQDimuonVector");
+
+ // out->AddNode("SRecEvent");
+//  out->AddNode("SQMCEvent");
+//  out->AddNode("SQTruthTrackVector");
+//  out->AddNode("SQTruthDimuonVector");
 
   vector<string> list_dst;
   string fn_dst;
