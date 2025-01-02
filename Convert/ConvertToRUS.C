@@ -4,8 +4,9 @@ R__LOAD_LIBRARY(libfun4all_rus_file_manager)
 R__LOAD_LIBRARY(libcalibrator)
 R__LOAD_LIBRARY(libktracker)
 
-int ConvertToVect (){
-	const char* fn_udst= "uDST.root";
+int ConvertToRUS(){
+	//const char* fn_udst= "uDST.root";
+	const char* fn_udst= "/pnfs/e1039/scratch/users/kenichi/RecoData2024/reco/run_006114/spill_001936364/out/run_006114_spill_001936364_spin_reco.root";
 	Fun4AllServer* se = Fun4AllServer::instance();
 	Fun4AllInputManager *in = new Fun4AllDstInputManager("DUMMY");
 	se->registerInputManager(in);
@@ -24,7 +25,8 @@ int ConvertToVect (){
         tree->SetDataTriggerEmu(true); //turn this one true if you turn off SetMCTriggerEmu
         tree->SetMCTriggerEmu(false);
         tree->SetRecoMode(true);
-        tree->SetFileName("RUS_SpinQuest_Exp_Data_Std_Occu.root");
+	tree->SetSaveOnlyDimuon(true);
+        tree->SetFileName("RUS");
         se->registerOutputManager(tree);
 
 

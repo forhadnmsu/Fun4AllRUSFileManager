@@ -40,7 +40,7 @@ public:
 	    data_trig_mode = !enable; // Automatically disable data_trig_mode when mc_trig_mode is enabled
    }
 
-
+   void SetSaveOnlyDimuon(bool enable) { saveDimuonOnly = enable; }
 protected:
     int OpenFile(PHCompositeNode* startNode);
     void CloseFile();
@@ -67,6 +67,7 @@ bool mc_mode;
 bool reco_mode;
 bool data_trig_mode;
 bool mc_trig_mode;
+bool saveDimuonOnly;
 
 int runID;
 int spillID;

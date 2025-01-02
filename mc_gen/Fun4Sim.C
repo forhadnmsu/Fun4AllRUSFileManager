@@ -146,7 +146,6 @@ int Fun4Sim(const int nevent = 10)
     genp->Verbosity(0);
     se->registerSubsystem(genp);
   }
-/*
 
   if(gen_particle) {
     PHG4SimpleEventGenerator *genm = new PHG4SimpleEventGenerator("MUM");
@@ -171,7 +170,6 @@ int Fun4Sim(const int nevent = 10)
     genm->Verbosity(0);
     se->registerSubsystem(genm);
   }
-*/
 
   // E906LegacyGen
   if(gen_e906dim){
@@ -251,7 +249,7 @@ int Fun4Sim(const int nevent = 10)
  /// Save only events that are in the geometric acceptance.
   SQGeomAcc* geom_acc = new SQGeomAcc();
   //geom_acc->SetMuonMode(SQGeomAcc::PAIR); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
-  geom_acc->SetMuonMode(SQGeomAcc::SINGLE_T); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
+  geom_acc->SetMuonMode(SQGeomAcc::PAIR_TBBT); // PAIR, PAIR_TBBT, SINGLE, SINGLE_T, etc.
   geom_acc->SetPlaneMode(SQGeomAcc::HODO_CHAM); // HODO, CHAM or HODO_CHAM
   geom_acc->SetNumOfH1EdgeElementsExcluded(4); // Exclude 4 elements at H1 edges
   se->registerSubsystem(geom_acc);

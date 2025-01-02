@@ -31,8 +31,9 @@ Fun4AllRUSEventOutputManager::Fun4AllRUSEventOutputManager(const std::string &my
     m_evt(0),
     m_sp_map(0),
     m_hit_vec(0),
-    //m_sq_trk_vec(0),
-    //m_sq_dim_vec(0),
+    m_sq_trk_vec(0),
+    m_sq_dim_vec(0),
+    saveDimuonOnly(true),
     mc_mode(true),
     reco_mode(true),
     data_trig_mode(false),
@@ -199,6 +200,15 @@ int Fun4AllRUSEventOutputManager::Write(PHCompositeNode* startNode) {
 		OpenFile(startNode);
 	}
 	ResetBranches();
+
+	if (! m_evt->get_trigger(SQEvent::MATRIX1)) {
+		return Fun4AllReturnCodes::EVENT_OK;
+ 	 }
+
+	if (saveDimuonOnly && m_sq_dim_vec->empty()) {
+		return 0;  // Skip this event if no dimuons are present and the mode is enabled
+        }
+
 	runID = m_evt->get_run_id();
 	spillID = m_evt->get_spill_id();
 	rfID = m_evt->get_qie_rf_id();
@@ -265,7 +275,7 @@ if(reco_mode==true){
 		int trk_id_neg = sdim.get_track_id_neg();
 		SRecTrack& trk_pos = dynamic_cast<SRecTrack&>(*(m_sq_trk_vec->at(trk_id_pos))); 
 		SRecTrack& trk_neg = dynamic_cast<SRecTrack&>(*(m_sq_trk_vec->at(trk_id_neg))); 
-
+		
 		// Fill dimuon vectors
 		dimuon_vtx_x.push_back(sdim.get_pos().X());
 		dimuon_vtx_y.push_back(sdim.get_pos().Y());
@@ -274,10 +284,13 @@ if(reco_mode==true){
 		dimuon_vtx_py.push_back(sdim.get_mom().Py());
 		dimuon_vtx_pz.push_back(sdim.get_mom().Pz());
 
+		cout << "----------------------------------"<< endl;
+
 		cout << "dim mass "<< sdim.get_mom().M() <<endl;
 		cout << "dim mass 2 "<<sdim.mass <<endl;
 		cout << "dim x1 "<<sdim.x1 <<endl;
 		cout << "dim x2 "<< sdim.x2<<endl;
+		cout << "dim Pz "<< sdim.get_mom().Pz()<<endl;
 
 		dimuon_mass.push_back(sdim.get_mom().M());
 		dimuon_x1.push_back(sdim.x1);
