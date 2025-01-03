@@ -17,7 +17,7 @@ class SQHitVector;
 class SQTrackVector;
 class SQTrackVector;
 class SQDimuonVector;
-
+class SQRun;
 
 class Fun4AllRUSEventOutputManager : public Fun4AllOutputManager {
 public:
@@ -61,6 +61,7 @@ private:
     SQTrackVector * m_vec_trk;
     SQTrackVector*  m_sq_trk_vec;
     SQDimuonVector* m_sq_dim_vec;
+    SQRun* sq_run;
 
 UtilTrigger::TrigRoadset m_rs;
 bool mc_mode;

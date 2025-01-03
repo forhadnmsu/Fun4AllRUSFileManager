@@ -1,9 +1,10 @@
 #!/bin/bash
 DIR_MACRO=$(dirname $(readlink -f $BASH_SOURCE))
-DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in/BT
-LIST_VEC=list_vec.txt # File containing the list of input files
+#DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in/BT
+echo "The script is located in: $DIR_MACRO"
+LIST_VEC=list_dst.txt # File containing the list of input files
 
-JOB_NAME=COMB_BT_MC_JAN01
+JOB_NAME=Data_FullOccu_RUS
 DO_OVERWRITE=no
 USE_GRID=no
 FORCE_PNFS=no
@@ -55,8 +56,8 @@ echo "N_JOB_MAX    = $N_JOB_MAX"
 ## Prepare and execute the job submission
 ##
 if [ $USE_GRID == yes -o $FORCE_PNFS == yes ]; then
-    #DIR_DATA=/pnfs/e1039/scratch/mhossain/vec_data_in
-    DIR_DATA=/pnfs/e1039/scratch/users/$USER/vec_data_in
+    DIR_DATA=/pnfs/e1039/scratch/mhossain/vec_data_in
+    #DIR_DATA=/pnfs/e1039/scratch/users/$USER/vec_data_in
     DIR_WORK=$DIR_DATA/$JOB_NAME
     ln -nfs $DIR_DATA data # for convenience
 else
@@ -66,7 +67,7 @@ fi
 cd $DIR_MACRO
 mkdir -p $DIR_WORK
 rm -f    $DIR_WORK/input.tar.gz
-tar czf  $DIR_WORK/input.tar.gz  config *.C ../setup.sh ../inst
+tar czf  $DIR_WORK/input.tar.gz *.C ../setup.sh ../inst
 
 #for (( FILE_I = 0; FILE_I < $N_FILES; FILE_I++ )) ; do
 for (( FILE_I = START_JOB; FILE_I <= END_JOB && FILE_I < N_FILES; FILE_I++ )) ; do

@@ -1,0 +1,8 @@
+INPUT  = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_20/in
+OUTPUT = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_20/out
+HOST   = spinquestgpvm01.fnal.gov
+PWD    = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_20/exe
+IN_FILE = run_005848_spill_001916136_spin_reco.root
+OUT_FILE = out_run_005848_spill_001916136_spin_reco.root
+
+Processing Fun4Sim.C("/seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_20/in/run_005848_spill_001916136_spin_reco.root", "out_run_005848_spill_001916136_spin_reco.root", 0)...

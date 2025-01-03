@@ -1,9 +1,9 @@
 #!/bin/bash
 DIR_MACRO=$(dirname $(readlink -f $BASH_SOURCE))
-DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in/BT
+DIR_DST=/pnfs/e1039/scratch/mhossain/vec_data_in/TB
 LIST_VEC=list_vec.txt # File containing the list of input files
 
-JOB_NAME=COMB_BT_MC_JAN01
+JOB_NAME=COMB_BT_MC_JAN02
 DO_OVERWRITE=no
 USE_GRID=no
 FORCE_PNFS=no

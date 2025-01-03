@@ -1,0 +1,841 @@
+INPUT  = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_90/in
+OUTPUT = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_90/out
+HOST   = spinquestgpvm01.fnal.gov
+PWD    = /seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_90/exe
+IN_FILE = run_005994_spill_001924472_spin_reco.root
+OUT_FILE = out_run_005994_spill_001924472_spin_reco.root
+
+Processing Fun4Sim.C("/seaquest/users/mhossain/Fun4AllRUSFileManager/Convert/scratch/Data_FullOccu_RUS/job_90/in/run_005994_spill_001924472_spin_reco.root", "out_run_005994_spill_001924472_spin_reco.root", 0)...
+Fun4AllServer: Runnumber forced to 1 by RUNNUMBER IntFlag
+--------------------------------------
+
+List of Nodes in Fun4AllServer:
+Node Tree under TopNode TOP
+TOP (PHCompositeNode)/
+   DST (PHCompositeNode)/
+      SQEvent (IO,SQEvent_v2)
+      SQHardEvent (IO,SQHardEvent_v1)
+      SQHitVector (IO,SQHitVector_v1)
+      SQTriggerHitVector (IO,SQHitVector_v1)
+      SQRecTrackVector (IO,SQTrackVector_v1)
+      TrackletVector (IO,TrackletVector)
+      SQRecDimuonVector_PM (IO,SQDimuonVector_v1)
+      SQRecDimuonVector_PP (IO,SQDimuonVector_v1)
+      SQRecDimuonVector_MM (IO,SQDimuonVector_v1)
+   RUN (PHCompositeNode)/
+      SQRun (IO,SQRun_v2)
+      SQSpillMap (IO,SQSpillMap_v1)
+      SQHardSpillMap (IO,SQIntMap_v1)
+      SQParamDeco (IO,SQParamDeco_v1)
+      FIELD_CONFIG (IO,PHFieldConfig_v3)
+      GEOMETRY_IO (IO,PHGeomIOTGeo)
+   PAR (PHCompositeNode)/
+
+
+Fun4AllRUSEventOutputManager::OpenFile(): Attempting to open file: out_run_005994_spill_001924472_spin_reco.root with tree: tree
+File out_run_005994_spill_001924472_spin_reco.root opened successfully.
+Tree tree created successfully.
+============Reco Mode:  1
+end of setting the branches 
+end of the mc mode 
+beginning of the reco mode: 1
+end of the reco mode 
+beginning of data trig 
+GeomSvc:  Load the plane geometry info for run_id = 1.
+Read channel map from user_e1039_geom_plane.param_G9_run5_2.
+GeomSvc: loaded hodoscope alignment parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/alignment_hodo.txt
+GeomSvc: loaded prop. tube alignment parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/alignment_prop.txt
+GeomSvc: loaded millepede-based alignment parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/align_mille.txt
+GeomSvc: loaded calibration parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/calibration.txt
+----------------------------------
+dim mass 2.34642
+dim mass 2 2.34642
+dim x1 0.586448
+dim x2 0.0504701
+dim Pz 70.8783
+----------------------------------
+dim mass 2.24248
+dim mass 2 2.24248
+dim x1 0.833879
+dim x2 0.0327626
+dim Pz 100.82
+----------------------------------
+dim mass 1.75919
+dim mass 2 1.75919
+dim x1 0.793357
+dim x2 0.0206349
+dim Pz 95.9304
+----------------------------------
+dim mass 6.00553
+dim mass 2 6.00553
+dim x1 0.680036
+dim x2 0.313374
+dim Pz 81.9484
+----------------------------------
+dim mass 2.28766
+dim mass 2 2.28766
+dim x1 0.769378
+dim x2 0.0450865
+dim Pz 93.0073
+----------------------------------
+dim mass 1.84644
+dim mass 2 1.84644
+dim x1 0.638191
+dim x2 0.0355029
+dim Pz 77.1503
+----------------------------------
+dim mass 2.06673
+dim mass 2 2.06673
+dim x1 0.622393
+dim x2 0.0337139
+dim Pz 75.2414
+----------------------------------
+dim mass 4.20427
+dim mass 2 4.20427
+dim x1 0.598184
+dim x2 0.144916
+dim Pz 72.2084
+----------------------------------
+dim mass 0.250643
+dim mass 2 0.250643
+dim x1 0.73842
+dim x2 0.00436822
+dim Pz 89.3016
+----------------------------------
+dim mass 1.07419
+dim mass 2 1.07419
+dim x1 0.966363
+dim x2 0.00927342
+dim Pz 116.865
+----------------------------------
+dim mass 1.94209
+dim mass 2 1.94209
+dim x1 0.988202
+dim x2 0.0343607
+dim Pz 119.482
+----------------------------------
+dim mass 4.58551
+dim mass 2 4.58551
+dim x1 0.389349
+dim x2 0.306357
+dim Pz 46.7989
+----------------------------------
+dim mass 0.824453
+dim mass 2 0.824453
+dim x1 1.07916
+dim x2 0.00835869
+dim Pz 130.507
+----------------------------------
+dim mass 1.92305
+dim mass 2 1.92305
+dim x1 0.753465
+dim x2 0.0277424
+dim Pz 91.0991
+----------------------------------
+dim mass 1.09206
+dim mass 2 1.09206
+dim x1 0.699907
+dim x2 0.0102773
+dim Pz 84.6382
+----------------------------------
+dim mass 0.923151
+dim mass 2 0.923151
+dim x1 0.873268
+dim x2 0.00782504
+dim Pz 105.607
+----------------------------------
+dim mass 3.39894
+dim mass 2 3.39894
+dim x1 0.341052
+dim x2 0.152245
+dim Pz 41.1035
+----------------------------------
+dim mass 3.48007
+dim mass 2 3.48007
+dim x1 0.580632
+dim x2 0.0979716
+dim Pz 70.13
+----------------------------------
+dim mass 2.62539
+dim mass 2 2.62539
+dim x1 0.742062
+dim x2 0.0679596
+dim Pz 89.682
+----------------------------------
+dim mass 0.78375
+dim mass 2 0.78375
+dim x1 0.886729
+dim x2 0.00977193
+dim Pz 107.233
+----------------------------------
+dim mass 2.9176
+dim mass 2 2.9176
+dim x1 0.709918
+dim x2 0.0638035
+dim Pz 85.7983
+----------------------------------
+dim mass 1.34188
+dim mass 2 1.34188
+dim x1 0.952584
+dim x2 0.0159479
+dim Pz 115.192
+----------------------------------
+dim mass 0.837111
+dim mass 2 0.837111
+dim x1 0.984405
+dim x2 0.00778833
+dim Pz 119.048
+----------------------------------
+dim mass 0.784494
+dim mass 2 0.784494
+dim x1 0.946147
+dim x2 0.00667787
+dim Pz 114.422
+----------------------------------
+dim mass 3.72072
+dim mass 2 3.72072
+dim x1 0.534874
+dim x2 0.133696
+dim Pz 64.5622
+----------------------------------
+dim mass 3.19252
+dim mass 2 3.19252
+dim x1 0.912937
+dim x2 0.110779
+dim Pz 110.307
+----------------------------------
+dim mass 1.83066
+dim mass 2 1.83066
+dim x1 0.822195
+dim x2 0.0483137
+dim Pz 99.392
+----------------------------------
+dim mass 5.96422
+dim mass 2 5.96422
+dim x1 2.65599
+dim x2 0.320161
+dim Pz 320.917
+----------------------------------
+dim mass 3.88182
+dim mass 2 3.88182
+dim x1 0.599285
+dim x2 0.11616
+dim Pz 72.3687
+----------------------------------
+dim mass 6.76024
+dim mass 2 6.76024
+dim x1 2.44323
+dim x2 0.32908
+dim Pz 295.177
+----------------------------------
+dim mass 3.44312
+dim mass 2 3.44312
+dim x1 0.595405
+dim x2 0.0905514
+dim Pz 71.9237
+----------------------------------
+dim mass 0.731245
+dim mass 2 0.731245
+dim x1 1.00386
+dim x2 0.0088297
+dim Pz 121.4
+----------------------------------
+dim mass 2.86412
+dim mass 2 2.86412
+dim x1 0.698453
+dim x2 0.0703904
+dim Pz 84.4055
+----------------------------------
+dim mass 1.43462
+dim mass 2 1.43462
+dim x1 0.634057
+dim x2 0.0202322
+dim Pz 76.6648
+----------------------------------
+dim mass 2.58476
+dim mass 2 2.58476
+dim x1 0.931073
+dim x2 0.0363393
+dim Pz 112.571
+----------------------------------
+dim mass 0.460286
+dim mass 2 0.460286
+dim x1 0.888669
+dim x2 0.00732732
+dim Pz 107.47
+----------------------------------
+dim mass 1.52285
+dim mass 2 1.52285
+dim x1 0.635568
+dim x2 0.031903
+dim Pz 76.8365
+----------------------------------
+dim mass 1.48862
+dim mass 2 1.48862
+dim x1 0.717008
+dim x2 0.0280173
+dim Pz 86.6897
+----------------------------------
+dim mass 3.35618
+dim mass 2 3.35618
+dim x1 0.524708
+dim x2 0.118244
+dim Pz 63.3473
+----------------------------------
+dim mass 3.0545
+dim mass 2 3.0545
+dim x1 0.365925
+dim x2 0.141073
+dim Pz 44.1223
+----------------------------------
+dim mass 3.49397
+dim mass 2 3.49397
+dim x1 0.449137
+dim x2 0.163826
+dim Pz 54.1645
+----------------------------------
+dim mass 2.29628
+dim mass 2 2.29628
+dim x1 0.390394
+dim x2 0.106001
+dim Pz 47.1147
+----------------------------------
+dim mass 2.40346
+dim mass 2 2.40346
+dim x1 0.529268
+dim x2 0.0691442
+dim Pz 63.9452
+----------------------------------
+dim mass 2.10651
+dim mass 2 2.10651
+dim x1 0.755517
+dim x2 0.034402
+dim Pz 91.341
+----------------------------------
+dim mass 1.08142
+dim mass 2 1.08142
+dim x1 0.909706
+dim x2 0.009792
+dim Pz 110.012
+----------------------------------
+dim mass 2.20456
+dim mass 2 2.20456
+dim x1 0.792602
+dim x2 0.032209
+dim Pz 95.8282
+----------------------------------
+dim mass 1.94466
+dim mass 2 1.94466
+dim x1 0.740138
+dim x2 0.0262972
+dim Pz 89.4886
+----------------------------------
+dim mass 2.50111
+dim mass 2 2.50111
+dim x1 0.971952
+dim x2 0.0526608
+dim Pz 117.5
+----------------------------------
+dim mass 0.887224
+dim mass 2 0.887224
+dim x1 1.16075
+dim x2 0.0127013
+dim Pz 140.372
+----------------------------------
+dim mass 0.627566
+dim mass 2 0.627566
+dim x1 0.94064
+dim x2 0.00559144
+dim Pz 113.757
+----------------------------------
+dim mass 0.50034
+dim mass 2 0.50034
+dim x1 0.701442
+dim x2 0.00473225
+dim Pz 84.8291
+----------------------------------
+dim mass 4.09457
+dim mass 2 4.09457
+dim x1 0.584045
+dim x2 0.15182
+dim Pz 70.4918
+----------------------------------
+dim mass 2.18643
+dim mass 2 2.18643
+dim x1 0.593329
+dim x2 0.0393851
+dim Pz 71.721
+----------------------------------
+dim mass 0.93832
+dim mass 2 0.93832
+dim x1 0.6463
+dim x2 0.0136169
+dim Pz 78.1517
+----------------------------------
+dim mass 0.510083
+dim mass 2 0.510083
+dim x1 0.571814
+dim x2 0.00932088
+dim Pz 69.1474
+----------------------------------
+dim mass 1.14225
+dim mass 2 1.14225
+dim x1 0.792527
+dim x2 0.0110707
+dim Pz 95.8391
+----------------------------------
+dim mass 6.29823
+dim mass 2 6.29823
+dim x1 0.819613
+dim x2 0.362511
+dim Pz 98.7827
+----------------------------------
+dim mass 5.43317
+dim mass 2 5.43317
+dim x1 0.588587
+dim x2 0.354829
+dim Pz 70.8493
+----------------------------------
+dim mass 4.99119
+dim mass 2 4.99119
+dim x1 0.597934
+dim x2 0.187656
+dim Pz 72.1377
+----------------------------------
+dim mass 1.05527
+dim mass 2 1.05527
+dim x1 0.868687
+dim x2 0.00993333
+dim Pz 105.051
+----------------------------------
+dim mass 1.82971
+dim mass 2 1.82971
+dim x1 0.75949
+dim x2 0.0229158
+dim Pz 91.8323
+----------------------------------
+dim mass 3.16034
+dim mass 2 3.16034
+dim x1 0.73345
+dim x2 0.0749491
+dim Pz 88.6338
+----------------------------------
+dim mass 2.71794
+dim mass 2 2.71794
+dim x1 0.588792
+dim x2 0.0654573
+dim Pz 71.1476
+----------------------------------
+dim mass 5.35776
+dim mass 2 5.35776
+dim x1 0.509421
+dim x2 0.277368
+dim Pz 61.3481
+----------------------------------
+dim mass 6.75167
+dim mass 2 6.75167
+dim x1 0.415738
+dim x2 0.495935
+dim Pz 49.8112
+----------------------------------
+dim mass 5.10513
+dim mass 2 5.10513
+dim x1 0.609558
+dim x2 0.359895
+dim Pz 73.3808
+----------------------------------
+dim mass 1.03761
+dim mass 2 1.03761
+dim x1 0.611986
+dim x2 0.0161033
+dim Pz 73.9994
+----------------------------------
+dim mass 1.31438
+dim mass 2 1.31438
+dim x1 0.702365
+dim x2 0.0163786
+dim Pz 84.9298
+----------------------------------
+dim mass 1.18721
+dim mass 2 1.18721
+dim x1 0.874352
+dim x2 0.0142109
+dim Pz 105.732
+----------------------------------
+dim mass 2.93473
+dim mass 2 2.93473
+dim x1 1.00559
+dim x2 0.0590437
+dim Pz 121.562
+----------------------------------
+dim mass 5.5981
+dim mass 2 5.5981
+dim x1 0.964841
+dim x2 0.320869
+dim Pz 116.386
+----------------------------------
+dim mass 11.1982
+dim mass 2 11.1982
+dim x1 2.51384
+dim x2 0.744787
+dim Pz 303.324
+----------------------------------
+dim mass 2.43582
+dim mass 2 2.43582
+dim x1 0.801776
+dim x2 0.0377261
+dim Pz 96.9324
+----------------------------------
+dim mass 2.3811
+dim mass 2 2.3811
+dim x1 0.826139
+dim x2 0.0761973
+dim Pz 99.8426
+----------------------------------
+dim mass 1.98932
+dim mass 2 1.98932
+dim x1 0.677041
+dim x2 0.0760475
+dim Pz 81.8105
+----------------------------------
+dim mass 1.44972
+dim mass 2 1.44972
+dim x1 0.816294
+dim x2 0.0579472
+dim Pz 98.6692
+----------------------------------
+dim mass 2.35878
+dim mass 2 2.35878
+dim x1 0.727953
+dim x2 0.129549
+dim Pz 87.9174
+----------------------------------
+dim mass 6.49768
+dim mass 2 6.49768
+dim x1 1.44927
+dim x2 0.695088
+dim Pz 174.62
+----------------------------------
+dim mass 7.87577
+dim mass 2 7.87577
+dim x1 1.47038
+dim x2 0.851016
+dim Pz 177.025
+----------------------------------
+dim mass 3.58002
+dim mass 2 3.58002
+dim x1 0.548858
+dim x2 0.134786
+dim Pz 66.2524
+----------------------------------
+dim mass 2.20774
+dim mass 2 2.20774
+dim x1 0.624142
+dim x2 0.0416609
+dim Pz 75.4454
+----------------------------------
+dim mass 4.76234
+dim mass 2 4.76234
+dim x1 2.37238
+dim x2 0.194373
+dim Pz 286.736
+----------------------------------
+dim mass 2.96593
+dim mass 2 2.96593
+dim x1 0.382139
+dim x2 0.16737
+dim Pz 46.0583
+----------------------------------
+dim mass 3.06162
+dim mass 2 3.06162
+dim x1 0.811822
+dim x2 0.0640199
+dim Pz 98.1226
+----------------------------------
+dim mass 2.40322
+dim mass 2 2.40322
+dim x1 0.583893
+dim x2 0.0753775
+dim Pz 70.5457
+----------------------------------
+dim mass 2.20592
+dim mass 2 2.20592
+dim x1 0.891214
+dim x2 0.0609462
+dim Pz 107.727
+----------------------------------
+dim mass 2.85366
+dim mass 2 2.85366
+dim x1 0.627509
+dim x2 0.0812493
+dim Pz 75.8151
+----------------------------------
+dim mass 4.7008
+dim mass 2 4.7008
+dim x1 2.35197
+dim x2 0.156876
+dim Pz 284.303
+----------------------------------
+dim mass 1.76684
+dim mass 2 1.76684
+dim x1 0.877049
+dim x2 0.022477
+dim Pz 106.051
+----------------------------------
+dim mass 4.82414
+dim mass 2 4.82414
+dim x1 2.04432
+dim x2 0.203485
+dim Pz 247.052
+----------------------------------
+dim mass 4.03097
+dim mass 2 4.03097
+dim x1 0.540487
+dim x2 0.271
+dim Pz 65.1113
+----------------------------------
+dim mass 0.95854
+dim mass 2 0.95854
+dim x1 1.02517
+dim x2 0.0887646
+dim Pz 123.902
+----------------------------------
+dim mass 1.69718
+dim mass 2 1.69718
+dim x1 0.845983
+dim x2 0.0229301
+dim Pz 102.293
+----------------------------------
+dim mass 2.2155
+dim mass 2 2.2155
+dim x1 0.749563
+dim x2 0.0362753
+dim Pz 90.6191
+----------------------------------
+dim mass 3.32061
+dim mass 2 3.32061
+dim x1 0.630448
+dim x2 0.0926332
+dim Pz 76.1599
+----------------------------------
+dim mass 3.8236
+dim mass 2 3.8236
+dim x1 1.04476
+dim x2 0.102138
+dim Pz 126.259
+----------------------------------
+dim mass 0.250233
+dim mass 2 0.250233
+dim x1 0.688531
+dim x2 0.0057848
+dim Pz 83.2667
+----------------------------------
+dim mass 0.27755
+dim mass 2 0.27755
+dim x1 0.709642
+dim x2 0.00447607
+dim Pz 85.8211
+----------------------------------
+dim mass 2.40782
+dim mass 2 2.40782
+dim x1 0.659994
+dim x2 0.0447416
+dim Pz 79.7785
+----------------------------------
+dim mass 2.20791
+dim mass 2 2.20791
+dim x1 0.746387
+dim x2 0.0409581
+dim Pz 90.2306
+----------------------------------
+dim mass 2.07675
+dim mass 2 2.07675
+dim x1 0.804247
+dim x2 0.0385162
+dim Pz 97.2305
+----------------------------------
+dim mass 1.16036
+dim mass 2 1.16036
+dim x1 0.558107
+dim x2 0.0175951
+dim Pz 67.4818
+----------------------------------
+dim mass 1.91155
+dim mass 2 1.91155
+dim x1 0.736517
+dim x2 0.0256133
+dim Pz 89.0514
+----------------------------------
+dim mass 0.914458
+dim mass 2 0.914458
+dim x1 0.976269
+dim x2 0.009613
+dim Pz 118.063
+----------------------------------
+dim mass 1.62376
+dim mass 2 1.62376
+dim x1 0.857086
+dim x2 0.0329247
+dim Pz 103.626
+----------------------------------
+dim mass 0.871821
+dim mass 2 0.871821
+dim x1 0.815392
+dim x2 0.00887027
+dim Pz 98.6065
+----------------------------------
+dim mass 1.22143
+dim mass 2 1.22143
+dim x1 0.84128
+dim x2 0.0239211
+dim Pz 101.723
+----------------------------------
+dim mass 2.98761
+dim mass 2 2.98761
+dim x1 0.718377
+dim x2 0.057912
+dim Pz 86.827
+----------------------------------
+dim mass 3.60199
+dim mass 2 3.60199
+dim x1 0.660774
+dim x2 0.0893298
+dim Pz 79.8307
+----------------------------------
+dim mass 2.17465
+dim mass 2 2.17465
+dim x1 0.724842
+dim x2 0.0383579
+dim Pz 87.6273
+----------------------------------
+dim mass 0.678399
+dim mass 2 0.678399
+dim x1 0.972685
+dim x2 0.00604835
+dim Pz 117.633
+----------------------------------
+dim mass 2.99367
+dim mass 2 2.99367
+dim x1 0.633841
+dim x2 0.0682133
+dim Pz 76.5933
+----------------------------------
+dim mass 1.76921
+dim mass 2 1.76921
+dim x1 0.734066
+dim x2 0.0242098
+dim Pz 88.7563
+----------------------------------
+dim mass 2.44643
+dim mass 2 2.44643
+dim x1 0.699158
+dim x2 0.0965963
+dim Pz 84.466
+----------------------------------
+dim mass 5.42662
+dim mass 2 5.42662
+dim x1 0.757408
+dim x2 0.206936
+dim Pz 91.4066
+----------------------------------
+dim mass 2.62504
+dim mass 2 2.62504
+dim x1 0.882971
+dim x2 0.0780799
+dim Pz 106.714
+----------------------------------
+dim mass 1.49047
+dim mass 2 1.49047
+dim x1 0.782618
+dim x2 0.106983
+dim Pz 94.55
+----------------------------------
+dim mass 2.65051
+dim mass 2 2.65051
+dim x1 0.89018
+dim x2 0.0763865
+dim Pz 107.588
+----------------------------------
+dim mass 2.1437
+dim mass 2 2.1437
+dim x1 0.911393
+dim x2 0.0585861
+dim Pz 110.17
+----------------------------------
+dim mass 0.985798
+dim mass 2 0.985798
+dim x1 0.81104
+dim x2 0.0874896
+dim Pz 98.0058
+----------------------------------
+dim mass 2.1993
+dim mass 2 2.1993
+dim x1 0.918603
+dim x2 0.0568927
+dim Pz 111.044
+----------------------------------
+dim mass 5.04243
+dim mass 2 5.04243
+dim x1 0.907078
+dim x2 0.374038
+dim Pz 109.35
+----------------------------------
+dim mass 2.99526
+dim mass 2 2.99526
+dim x1 0.597613
+dim x2 0.117952
+dim Pz 72.1648
+----------------------------------
+dim mass 1.00855
+dim mass 2 1.00855
+dim x1 0.687556
+dim x2 0.012451
+dim Pz 83.1425
+----------------------------------
+dim mass 1.0085
+dim mass 2 1.0085
+dim x1 0.751286
+dim x2 0.0148514
+dim Pz 90.8478
+----------------------------------
+dim mass 2.58961
+dim mass 2 2.58961
+dim x1 0.679523
+dim x2 0.0482965
+dim Pz 82.137
+----------------------------------
+dim mass 2.40283
+dim mass 2 2.40283
+dim x1 0.783293
+dim x2 0.0355842
+dim Pz 94.6991
+----------------------------------
+dim mass 2.74161
+dim mass 2 2.74161
+dim x1 0.90799
+dim x2 0.0682313
+dim Pz 109.749
+----------------------------------
+dim mass 2.00632
+dim mass 2 2.00632
+dim x1 1.00237
+dim x2 0.062145
+dim Pz 121.169
+----------------------------------
+dim mass 2.88272
+dim mass 2 2.88272
+dim x1 0.580084
+dim x2 0.0740149
+dim Pz 70.0864
+Fun4AllRUSEventOutputManager::CloseFile(): Closing file: out_run_005994_spill_001924472_spin_reco.root
+Deleting UNIVERSALOUT
+  Timer2: process_event_01_prep         0.000217568 ms *     3640 =        0 s
+  Timer2: process_event_02_subsys        0.00169865 ms *     3640 =        0 s
+  Timer2: process_event_03_output         0.0198212 ms *     3640 =        0 s
+  Timer2: process_event_04_reset          0.0528253 ms *     3640 =        0 s
+All done
+
+real	0m5.505s
+user	0m4.449s
+sys	0m0.432s
+gridrun.sh finished!

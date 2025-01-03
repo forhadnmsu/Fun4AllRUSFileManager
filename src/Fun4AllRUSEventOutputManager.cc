@@ -34,10 +34,10 @@ Fun4AllRUSEventOutputManager::Fun4AllRUSEventOutputManager(const std::string &my
     m_sq_trk_vec(0),
     m_sq_dim_vec(0),
     saveDimuonOnly(true),
-    mc_mode(true),
+    mc_mode(false),
     reco_mode(true),
-    data_trig_mode(false),
-    mc_trig_mode(true)
+    data_trig_mode(true),
+    mc_trig_mode(false)
 {
  ;
 }
@@ -152,8 +152,6 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 
 	if (reco_mode) {
 		m_sq_trk_vec = findNode::getClass<SQTrackVector>(startNode, "SQRecTrackVector");
-		//SQTrackVector* m_sq_trk_vec = findNode::getClass<SQTrackVector>(startNode, "SQRecTrackVector");
-
 		m_sq_dim_vec = findNode::getClass<SQDimuonVector>(startNode, "SQRecDimuonVector_PM");
 
 		if (!m_sq_trk_vec) {
@@ -176,12 +174,20 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 	}
 
 	cout << "beginning of data trig "<< endl;
+	cout << "reco_mode "<< reco_mode  << "data_trig_mode: "<< data_trig_mode << endl;
 	if(reco_mode ==true && data_trig_mode ==true){
+		cout << "inside the data roadset mode: "<<endl;
 		SQRun* sq_run = findNode::getClass<SQRun>(startNode, "SQRun");
+		if (!sq_run) std::cerr << "Error: SQRun  is null!" << std::endl;
 		if (!sq_run) return Fun4AllReturnCodes::ABORTEVENT;
 		int LBtop = sq_run->get_v1495_id(2);
 		int LBbot = sq_run->get_v1495_id(3);
 		int ret = m_rs.LoadConfig(LBtop, LBbot);
+		if (ret != 0) {
+			cout << "!!WARNING!!  OnlMonTrigEP::InitRunOnlMon():  roadset.LoadConfig returned " << ret << ".\n";
+		}
+		cout <<"Roadset " << m_rs.str(1) << endl;
+
 	}
 
 	cout << "beginning of mc trig "<< endl;
@@ -271,6 +277,8 @@ if(mc_mode==true){
 if(reco_mode==true){
 	for (auto it = m_sq_dim_vec->begin(); it != m_sq_dim_vec->end(); it++) {
 		SRecDimuon& sdim = dynamic_cast<SRecDimuon&>(**it);
+		sdim.calcVariables(); //eventually need to assign 1 or 2 depending on the target or dump; more at  https://github.com/E1039-Collaboration/e1039-core/pull/149
+
 		int trk_id_pos = sdim.get_track_id_pos();
 		int trk_id_neg = sdim.get_track_id_neg();
 		SRecTrack& trk_pos = dynamic_cast<SRecTrack&>(*(m_sq_trk_vec->at(trk_id_pos))); 
