@@ -178,7 +178,7 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 	if(reco_mode ==true && data_trig_mode ==true){
 		cout << "inside the data roadset mode: "<<endl;
 		SQRun* sq_run = findNode::getClass<SQRun>(startNode, "SQRun");
-		if (!sq_run) std::cerr << "Error: SQRun  is null!" << std::endl;
+		if (!sq_run) std::cout << "Error: SQRun  is null!" << std::endl;
 		if (!sq_run) return Fun4AllReturnCodes::ABORTEVENT;
 		int LBtop = sq_run->get_v1495_id(2);
 		int LBbot = sq_run->get_v1495_id(3);
