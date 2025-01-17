@@ -4,7 +4,7 @@ DIR_MACRO=$(dirname $(readlink -f $BASH_SOURCE))
 echo "The script is located in: $DIR_MACRO"
 LIST_VEC=list_dst.txt # File containing the list of input files
 
-JOB_NAME=Data_FullOccu_RUS
+JOB_NAME=Data_Commissioning_Basic
 DO_OVERWRITE=no
 USE_GRID=no
 FORCE_PNFS=no

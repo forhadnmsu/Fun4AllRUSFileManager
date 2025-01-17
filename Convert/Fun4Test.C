@@ -7,10 +7,11 @@ R__LOAD_LIBRARY(libktracker)
 R__LOAD_LIBRARY(libcalibrator)
 
 int Fun4Test(){
-	const string Vect_in = "/pnfs/e1039/scratch/users/kenichi/RecoData2024/reco/run_006155/spill_001941929/out/run_006155_spill_001941929_spin_reco.root";
+	const string Vect_in = "/pnfs/e1039/scratch/users/kenichi/RecoData2024/reco/run_005848/spill_001916124/out/run_005848_spill_001916124_spin_reco.root";
+	//const string Vect_in = "/pnfs/e1039/scratch/users/kenichi/RecoData2024/reco/run_006059/spill_001932164/out/run_006059_spill_001932164_spin_reco.root";
 
 	recoConsts* rc = recoConsts::instance();
-	rc->set_IntFlag("RUNNUMBER", 6155);
+	rc->set_IntFlag("RUNNUMBER", 6124);
 	rc->set_DoubleFlag("FMAGSTR", -1.044);
 	rc->set_DoubleFlag("KMAGSTR", -1.025);
 
@@ -34,11 +35,9 @@ int Fun4Test(){
 	tree->Verbosity(100);
 	tree->SetTreeName("tree");
 	tree->SetMCMode(false);
-	tree->SetDataTriggerEmu(true); //turn this one true if you turn off SetMCTriggerEmu
-	tree->SetMCTriggerEmu(false);
-	tree->SetRecoMode(true);
-	tree->SetSaveOnlyDimuon(true);
-	tree->SetFileName("DST.root");
+	tree->SetRecoMode(false);
+	tree->SetSaveOnlyDimuon(false);
+	tree->SetFileName("RUS.root");
 	se->registerOutputManager(tree);
 
 	se->run(100);

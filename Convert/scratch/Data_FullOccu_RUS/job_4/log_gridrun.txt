@@ -43,19 +43,15 @@ File out_run_005847_spill_001916114_spin_reco.root opened successfully.
 Tree tree created successfully.
 ============Reco Mode:  1
 end of setting the branches 
-end of the mc mode 
-beginning of the reco mode: 1
-end of the reco mode 
-beginning of data trig 
 Fun4AllRUSEventOutputManager::CloseFile(): Closing file: out_run_005847_spill_001916114_spin_reco.root
 Deleting UNIVERSALOUT
-  Timer2: process_event_01_prep         0.000194957 ms *    15953 =        0 s
-  Timer2: process_event_02_subsys        0.00146529 ms *    15953 =        0 s
-  Timer2: process_event_03_output        0.00380022 ms *    15953 =        0 s
-  Timer2: process_event_04_reset          0.0428714 ms *    15953 =        1 s
+  Timer2: process_event_01_prep         0.000201119 ms *    15953 =        0 s
+  Timer2: process_event_02_subsys         0.0014867 ms *    15953 =        0 s
+  Timer2: process_event_03_output        0.00393369 ms *    15953 =        0 s
+  Timer2: process_event_04_reset          0.0419668 ms *    15953 =        1 s
 All done
 
-real	0m13.882s
-user	0m12.291s
-sys	0m0.425s
+real	0m14.270s
+user	0m12.223s
+sys	0m0.638s
 gridrun.sh finished!

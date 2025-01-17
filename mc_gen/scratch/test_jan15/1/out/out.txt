@@ -1,0 +1,17 @@
+hello, grid.
+HOST = spinquestgpvm01.fnal.gov
+/seaquest/users/mhossain/Fun4AllRUSFileManager/mc_gen/scratch/test_jan15/1
+total 6.5K
+-rw-r--r-- 1 mhossain 500  12K Jan 15 02:23 Fun4Sim.C
+-rw-r--r-- 1 mhossain 500  13K Jan 15 02:13 Fun4Test.C
+-rwxr-xr-x 1 mhossain 500 1.3K Dec 29 01:56 gridrun.sh
+drwxr-xr-x 2 mhossain 500    3 Jan 15 02:33 input
+drwxr-xr-x 4 mhossain 500    4 Jan 15 02:15 inst
+-rw-r--r-- 1 mhossain 500  207 Jan 15 02:33 log_gridrun.txt
+drwxr-xr-t 2 mhossain 500    3 Jan 15 02:33 out
+-rw-r--r-- 1 mhossain 500  120 Jan 15 02:33 out.txt
+-rw-r--r-- 1 mhossain 500  874 Dec 29 02:30 phpythia8_DY.cfg
+-rw-r--r-- 1 mhossain 500 1.4K Dec 29 02:30 phpythia8_Jpsi.cfg
+-rw-r--r-- 1 mhossain 500 1.4K Dec 29 02:30 phpythia8_Jpsi_direct.cfg
+-rw-r--r-- 1 mhossain 500 1.6K Dec 29 02:30 phpythia8_psip.cfg
+-rw-r--r-- 1 mhossain 500 1.4K Jan  1 14:22 setup.sh

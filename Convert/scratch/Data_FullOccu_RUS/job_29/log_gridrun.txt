@@ -37,10 +37,6 @@ File out_run_005991_spill_001924385_spin_reco.root opened successfully.
 Tree tree created successfully.
 ============Reco Mode:  1
 end of setting the branches 
-end of the mc mode 
-beginning of the reco mode: 1
-end of the reco mode 
-beginning of data trig 
 GeomSvc:  Load the plane geometry info for run_id = 1.
 Read channel map from user_e1039_geom_plane.param_G9_run5_2.
 GeomSvc: loaded hodoscope alignment parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/alignment_hodo.txt
@@ -721,13 +717,13 @@ dim x2 0.175052
 dim Pz 144.394
 Fun4AllRUSEventOutputManager::CloseFile(): Closing file: out_run_005991_spill_001924385_spin_reco.root
 Deleting UNIVERSALOUT
-  Timer2: process_event_01_prep         0.000207818 ms *     3100 =        0 s
-  Timer2: process_event_02_subsys        0.00180799 ms *     3100 =        0 s
-  Timer2: process_event_03_output         0.0268863 ms *     3100 =        0 s
-  Timer2: process_event_04_reset          0.0523338 ms *     3100 =        0 s
+  Timer2: process_event_01_prep          0.00021207 ms *     3100 =        0 s
+  Timer2: process_event_02_subsys        0.00184231 ms *     3100 =        0 s
+  Timer2: process_event_03_output         0.0163957 ms *     3100 =        0 s
+  Timer2: process_event_04_reset          0.0527122 ms *     3100 =        0 s
 All done
 
-real	0m5.382s
-user	0m3.853s
-sys	0m0.422s
+real	0m5.479s
+user	0m3.969s
+sys	0m0.490s
 gridrun.sh finished!

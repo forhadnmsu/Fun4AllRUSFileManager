@@ -46,6 +46,7 @@ end of the reco mode
 beginning of data trig 
 reco_mode 1data_trig_mode: 1
 inside the data roadset mode: 
+Error: SQRun  is null!
 GeomSvc:  Load the plane geometry info for run_id = 6155.
 Read channel map from user_e1039_geom_plane.param_2024051001.
 GeomSvc: loaded hodoscope alignment parameters from /exp/seaquest/app/software/osg/software/e1039/resource/alignment/run6/alignment_hodo.txt
@@ -72,8 +73,8 @@ dim x2 0.0126612
 dim Pz 104.728
 Fun4AllRUSEventOutputManager::CloseFile(): Closing file: DST.root
 Deleting UNIVERSALOUT
-  Timer2: process_event_01_prep          0.00035488 ms *      100 =        0 s
-  Timer2: process_event_02_subsys        0.00303927 ms *      100 =        0 s
-  Timer2: process_event_03_output          0.175648 ms *      100 =        0 s
-  Timer2: process_event_04_reset          0.0309331 ms *      100 =        0 s
+  Timer2: process_event_01_prep          0.00024461 ms *      100 =        0 s
+  Timer2: process_event_02_subsys         0.0043222 ms *      100 =        0 s
+  Timer2: process_event_03_output          0.179267 ms *      100 =        0 s
+  Timer2: process_event_04_reset          0.0351946 ms *      100 =        0 s
 All done

@@ -29,10 +29,8 @@ int Fun4Sim(const string Vect_in, const string DST_out, const int n_evt=20){
         tree->Verbosity(100);
         tree->SetTreeName("tree");
         tree->SetMCMode(false);
-        tree->SetDataTriggerEmu(true); //turn this one true if you turn off SetMCTriggerEmu
-        tree->SetMCTriggerEmu(false);
-        tree->SetRecoMode(true);
-	tree->SetSaveOnlyDimuon(true);
+        tree->SetRecoMode(false);
+	tree->SetSaveOnlyDimuon(false);
         tree->SetFileName(DST_out);
         se->registerOutputManager(tree);
 

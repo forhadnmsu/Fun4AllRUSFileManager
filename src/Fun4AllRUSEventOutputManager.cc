@@ -19,6 +19,7 @@
 #include <ktracker/SRecEvent.h>
 #include <fun4all/Fun4AllReturnCodes.h>
 #include "Fun4AllRUSEventOutputManager.h"
+#include <fun4all/Fun4AllOutputManager.h>
 
 using namespace std;
 
@@ -30,14 +31,13 @@ Fun4AllRUSEventOutputManager::Fun4AllRUSEventOutputManager(const std::string &my
     m_file_name("output.root"),
     m_evt(0),
     m_sp_map(0),
+    sq_run(0),
     m_hit_vec(0),
     m_sq_trk_vec(0),
     m_sq_dim_vec(0),
-    saveDimuonOnly(true),
+    saveDimuonOnly(false),
     mc_mode(false),
-    reco_mode(true),
-    data_trig_mode(true),
-    mc_trig_mode(false)
+    reco_mode(false)
 {
  ;
 }
@@ -49,6 +49,8 @@ Fun4AllRUSEventOutputManager::~Fun4AllRUSEventOutputManager() {
 int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 	std::cout << "Fun4AllRUSEventOutputManager::OpenFile(): Attempting to open file: " << m_file_name << " with tree: " << m_tree_name << std::endl;
 	m_file = new TFile(m_file_name.c_str(), "RECREATE");
+	m_file->SetCompressionAlgorithm(ROOT::kLZMA);
+	m_file->SetCompressionLevel(5);
 
 	if (!m_file || m_file->IsZombie()) {
 		std::cerr << "Error: Could not create file " << m_file_name << std::endl;
@@ -69,23 +71,16 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 	m_tree->Branch("spillID", &spillID, "spillID/I");
 	m_tree->Branch("eventID", &eventID, "eventID/I");
 	m_tree->Branch("rfID", &rfID, "rfID/I");
-	m_tree->Branch("turnID", &turnID, "turnID/I");
-	m_tree->Branch("rfIntensities", rfIntensities, "rfIntensities[33]/I");
-	m_tree->Branch("fpgaTriggers", fpgaTriggers, "fpgaTriggers[5]/I");
-	m_tree->Branch("nimTriggers", nimTriggers, "nimTriggers[5]/I");
 
-	m_tree->Branch("detectorIDs", &detectorIDs);
-	m_tree->Branch("elementIDs", &elementIDs);
-	m_tree->Branch("tdcTimes", &tdcTimes);
-	m_tree->Branch("driftDistances", &driftDistances);
+	m_tree->Branch("rfIntensity", rfIntensity, "rfIntensity[33]/I");
+	m_tree->Branch("fpgaTrigger", fpgaTrigger, "fpgaTrigger[5]/I");
+	m_tree->Branch("nimTrigger", nimTrigger, "nimTrigger[5]/I");
+
+	m_tree->Branch("detectorID", &detectorID);
+	m_tree->Branch("elementID", &elementID);
+	m_tree->Branch("tdcTime", &tdcTime);
+	m_tree->Branch("driftDistance", &driftDistance);
 	m_tree->Branch("hitsInTime", &hitsInTime);
-
-	m_tree->Branch("triggerDetectorIDs", &triggerDetectorIDs);
-	m_tree->Branch("triggerElementIDs", &triggerElementIDs);
-	m_tree->Branch("triggerTdcTimes", &triggerTdcTimes);
-	m_tree->Branch("triggerDriftDistances", &triggerDriftDistances);
-	m_tree->Branch("triggerHitsInTime", &triggerHitsInTime);
-
 	if (mc_mode==true){
 		m_tree->Branch("mc_track_charges", &mc_track_charges);
 		m_tree->Branch("mc_track_id", &mc_track_id);
@@ -96,9 +91,6 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 		m_tree->Branch("mc_mom_vtx_py", &mc_mom_vtx_py);
 		m_tree->Branch("mc_mom_vtx_pz", &mc_mom_vtx_pz);
 	}
-
-
-	cout << "============Reco Mode:  "<< reco_mode << endl;
 
 	if (reco_mode==true){
 		m_tree->Branch("dimuon_vtx_x", &dimuon_vtx_x);
@@ -135,9 +127,9 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 		m_tree->Branch("mu_minus_chi2_dump", &mu_minus_chi2_dump);
 		m_tree->Branch("mu_minus_chi2_upstream", &mu_minus_chi2_upstream);
 
-		m_tree->Branch("top_bot", &top_bot);
-		m_tree->Branch("bot_top", &bot_top);
-		cout << "end of setting the branches "<< endl;
+
+		m_tree->SetAutoFlush(2500);
+    	       m_tree->SetBasketSize("*", 64000);
 	}
 	if (mc_mode) {
 		m_vec_trk = findNode::getClass<SQTrackVector>(startNode, "SQTruthTrackVector");
@@ -145,10 +137,6 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 			return Fun4AllReturnCodes::ABORTEVENT;
 		}
 	}
-
-	cout << "end of the mc mode "<< endl;
-	cout << "beginning of the reco mode: "<< reco_mode << endl;
-	cout << "end of the reco mode "<< endl;
 
 	if (reco_mode) {
 		m_sq_trk_vec = findNode::getClass<SQTrackVector>(startNode, "SQRecTrackVector");
@@ -167,50 +155,23 @@ int Fun4AllRUSEventOutputManager::OpenFile(PHCompositeNode* startNode) {
 
 	m_evt = findNode::getClass<SQEvent>(startNode, "SQEvent");
 	m_hit_vec = findNode::getClass<SQHitVector>(startNode, "SQHitVector");
-	m_trig_hit_vec = findNode::getClass<SQHitVector>(startNode, "SQTriggerHitVector");
 
-	if (!m_evt || !m_hit_vec || !m_trig_hit_vec) {
+	if (!m_evt || !m_hit_vec) {
 		return Fun4AllReturnCodes::ABORTEVENT;
 	}
-
-	cout << "beginning of data trig "<< endl;
-	cout << "reco_mode "<< reco_mode  << "data_trig_mode: "<< data_trig_mode << endl;
-	if(reco_mode ==true && data_trig_mode ==true){
-		cout << "inside the data roadset mode: "<<endl;
-		SQRun* sq_run = findNode::getClass<SQRun>(startNode, "SQRun");
-		if (!sq_run) std::cout << "Error: SQRun  is null!" << std::endl;
-		if (!sq_run) return Fun4AllReturnCodes::ABORTEVENT;
-		int LBtop = sq_run->get_v1495_id(2);
-		int LBbot = sq_run->get_v1495_id(3);
-		int ret = m_rs.LoadConfig(LBtop, LBbot);
-		if (ret != 0) {
-			cout << "!!WARNING!!  OnlMonTrigEP::InitRunOnlMon():  roadset.LoadConfig returned " << ret << ".\n";
-		}
-		cout <<"Roadset " << m_rs.str(1) << endl;
-
-	}
-
-	cout << "beginning of mc trig "<< endl;
-	if(reco_mode ==true && mc_trig_mode ==true){
-		int ret = m_rs.LoadConfig(131);
-		if (ret != 0) {
-			cout << "!!WARNING!!  OnlMonTrigEP::InitRunOnlMon():  roadset.LoadConfig returned " << ret << ".\n";
-		}
-		//cout <<"Roadset " << m_rs.str(1) << endl;
-	}
-	cout << "end of OpenFile "<< endl;
+	
 	return Fun4AllReturnCodes::EVENT_OK;
 }
 int Fun4AllRUSEventOutputManager::Write(PHCompositeNode* startNode) {
 	if (!m_file || !m_tree) {
 		OpenFile(startNode);
 	}
+
 	ResetBranches();
 
 	if (! m_evt->get_trigger(SQEvent::MATRIX1)) {
 		return Fun4AllReturnCodes::EVENT_OK;
  	 }
-
 	if (saveDimuonOnly && m_sq_dim_vec->empty()) {
 		return 0;  // Skip this event if no dimuons are present and the mode is enabled
         }
@@ -219,43 +180,33 @@ int Fun4AllRUSEventOutputManager::Write(PHCompositeNode* startNode) {
 	spillID = m_evt->get_spill_id();
 	rfID = m_evt->get_qie_rf_id();
 	eventID = m_evt->get_event_id();
-	turnID = m_evt->get_qie_turn_id();
+	//turnID = m_evt->get_qie_turn_id();
 
-	fpgaTriggers[0] = m_evt->get_trigger(SQEvent::MATRIX1);
-	fpgaTriggers[1] = m_evt->get_trigger(SQEvent::MATRIX2);
-	fpgaTriggers[2] = m_evt->get_trigger(SQEvent::MATRIX3);
-	fpgaTriggers[3] = m_evt->get_trigger(SQEvent::MATRIX4);
-	fpgaTriggers[4] = m_evt->get_trigger(SQEvent::MATRIX5);
+	fpgaTrigger[0] = m_evt->get_trigger(SQEvent::MATRIX1);
+	fpgaTrigger[1] = m_evt->get_trigger(SQEvent::MATRIX2);
+	fpgaTrigger[2] = m_evt->get_trigger(SQEvent::MATRIX3);
+	fpgaTrigger[3] = m_evt->get_trigger(SQEvent::MATRIX4);
+	fpgaTrigger[4] = m_evt->get_trigger(SQEvent::MATRIX5);
 
-	nimTriggers[0] = m_evt->get_trigger(SQEvent::NIM1);
-	nimTriggers[1] = m_evt->get_trigger(SQEvent::NIM2);
-	nimTriggers[2] = m_evt->get_trigger(SQEvent::NIM3);
-	nimTriggers[3] = m_evt->get_trigger(SQEvent::NIM4);
-	nimTriggers[4] = m_evt->get_trigger(SQEvent::NIM5);
+	nimTrigger[0] = m_evt->get_trigger(SQEvent::NIM1);
+	nimTrigger[1] = m_evt->get_trigger(SQEvent::NIM2);
+	nimTrigger[2] = m_evt->get_trigger(SQEvent::NIM3);
+	nimTrigger[3] = m_evt->get_trigger(SQEvent::NIM4);
+	nimTrigger[4] = m_evt->get_trigger(SQEvent::NIM5);
 	for (int i = -16; i < 16; ++i) {
     // cout << "intensity index: i" << i+16 << endl;
-    	rfIntensities[i + 16] = m_evt->get_qie_rf_intensity(i);
+    	rfIntensity[i+ 16] = m_evt->get_qie_rf_intensity(i);
 }
 
 if (m_hit_vec) {
     for (int ihit = 0; ihit < m_hit_vec->size(); ++ihit) {
         SQHit* hit = m_hit_vec->at(ihit);
-        detectorIDs.push_back(hit->get_detector_id());
-        elementIDs.push_back(hit->get_element_id());
-        tdcTimes.push_back(hit->get_tdc_time());
-        driftDistances.push_back(hit->get_drift_distance());
-        hitsInTime.push_back(hit->is_in_time());
-    }
-}
-
-if (m_trig_hit_vec) {
-    for (int ihit = 0; ihit < m_trig_hit_vec->size(); ++ihit) {
-        SQHit* hit = m_trig_hit_vec->at(ihit);
-        triggerDetectorIDs.push_back(hit->get_detector_id());
-        triggerElementIDs.push_back(hit->get_element_id());
-        triggerTdcTimes.push_back(hit->get_tdc_time());
-        triggerDriftDistances.push_back(hit->get_drift_distance());
-        triggerHitsInTime.push_back(hit->is_in_time());
+	//if (hit->is_in_time() ==0) continue;
+	//cout << "is_in_time(): "<< hit->is_in_time() << endl;
+        detectorID.push_back(hit->get_detector_id());
+        elementID.push_back(hit->get_element_id());
+        tdcTime.push_back(hit->get_tdc_time());
+        driftDistance.push_back(hit->get_drift_distance());
     }
 }
 
@@ -322,15 +273,6 @@ if(reco_mode==true){
 		mu_minus_vtx_py.push_back(trk_neg.get_mom_vtx().Y());
 		mu_minus_vtx_pz.push_back(trk_neg.get_mom_vtx().Z());
 
-		bool pos_top = m_rs.PosTop()->FindRoad(trk_pos.getTriggerRoad());
-		bool pos_bot = m_rs.PosBot()->FindRoad(trk_pos.getTriggerRoad());
-		bool neg_top = m_rs.NegTop()->FindRoad(trk_neg.getTriggerRoad());
-		bool neg_bot = m_rs.NegBot()->FindRoad(trk_neg.getTriggerRoad());
-		bool top_bot_ = pos_top && neg_bot;
-		bool bot_top_ =  pos_bot && neg_top;
-		top_bot.push_back(top_bot_);
-		bot_top.push_back(bot_top_);
-		//if (!top_bot_ && !bot_top_) continue;
 	}
 }
 	m_tree->Fill();
@@ -347,18 +289,10 @@ void Fun4AllRUSEventOutputManager::CloseFile() {
 }
 
 void Fun4AllRUSEventOutputManager::ResetBranches() {
-	detectorIDs.clear();
-	elementIDs.clear();
-	tdcTimes.clear();
-	driftDistances.clear();
-	hitsInTime.clear();
-
-	triggerDetectorIDs.clear();
-	triggerElementIDs.clear();
-	triggerTdcTimes.clear();
-	triggerDriftDistances.clear();
-	triggerHitsInTime.clear();
-
+	detectorID.clear();
+	elementID.clear();
+	tdcTime.clear();
+	driftDistance.clear();
 	//mc events
 	mc_track_charges.clear();
 	mc_track_id.clear();
@@ -401,6 +335,4 @@ void Fun4AllRUSEventOutputManager::ResetBranches() {
 	mu_minus_chi2_target.clear();
 	mu_minus_chi2_dump.clear();
 	mu_minus_chi2_upstream.clear();
-	top_bot.clear();
-	bot_top.clear();
 }
