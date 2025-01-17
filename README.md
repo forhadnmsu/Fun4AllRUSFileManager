@@ -26,9 +26,10 @@ To include reconstructed variables in your RUS file, follow these steps:
 ## Event-Level Variables
 | Variable Name      | Type               | Description                          |
 |--------------------|--------------------|--------------------------------------|
-| `eventID`          | `int`              | Unique identifier for the event      |
 | `runID`            | `int`              | Identifier for the current run       |
 | `spillID`          | `int`              | Identifier for the spill in the run  |
+| `eventID`          | `int`              | Unique identifier for the event      |
+| `rfID`             | `int`              | Identifier for the RF                |
 | `fpgaTriggers`     | `int[5]`           | Array of FPGA trigger counts         |
 | `nimTriggers`      | `int[5]`           | Array of NIM trigger counts          |
 | `rfIntensities`    | `int[33]`          | Array for QIE RF intensities         |
@@ -41,28 +42,6 @@ To include reconstructed variables in your RUS file, follow these steps:
 | `driftDistances`        | `std::vector<double>`    | Drift distances for each hit                 |
 | `tdcTimes`              | `std::vector<double>`    | TDC timing values for each hit               |
 | `hitInTime`             | `std::vector<bool>`      | Flags indicating if hits are within time     |
-
-## Trigger-Level Hit Variables
-| Variable Name              | Type                     | Description                                  |
-|----------------------------|--------------------------|----------------------------------------------|
-| `trigDetectorIDs`           | `std::vector<int>`       | Detector IDs for triggered hits              |
-| `trigElementIDs`            | `std::vector<int>`       | Element IDs for triggered hits               |
-| `trigDriftDistances`        | `std::vector<double>`    | Drift distances for triggered hits           |
-| `trigTdcTimes`              | `std::vector<double>`    | TDC timing values for triggered hits         |
-| `trigHitInTimes`            | `std::vector<bool>`      | Flags indicating if triggered hits are in    |
-|			     |				|   time					       |		
-
-## Track-Level Variables
-| Variable Name              | Type                     | Description                                  |
-|----------------------------|--------------------------|----------------------------------------------|
-| `mc_track_id`              | `std::vector<int>`       | Track IDs for Monte Carlo tracks             |
-| `mc_track_charges`         | `std::vector<int>`       | Charges of the Monte Carlo tracks            |
-| `mc_pos_vtx_x`             | `std::vector<double>`    | X-coordinate of the production vertex        |
-| `mc_pos_vtx_y`             | `std::vector<double>`    | Y-coordinate of the production vertex        |
-| `mc_pos_vtx_z`             | `std::vector<double>`    | Z-coordinate of the production vertex        |
-| `mc_mom_vtx_px`            | `std::vector<double>`    | X-component of the momentum at the vertex    |
-| `mc_mom_vtx_py`            | `std::vector<double>`    | Y-component of the momentum at the vertex    |
-| `mc_mom_vtx_pz`            | `std::vector<double>`    | Z-component of the momentum at the vertex    |
 
 ``` Compilation
 source setup.sh
