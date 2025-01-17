@@ -30,17 +30,17 @@ To include reconstructed variables in your RUS file, follow these steps:
 | `spillID`          | `int`              | Identifier for the spill in the run  |
 | `eventID`          | `int`              | Unique identifier for the event      |
 | `rfID`             | `int`              | Identifier for the RF                |
-| `fpgaTriggers`     | `int[5]`           | Array of FPGA trigger counts         |
-| `nimTriggers`      | `int[5]`           | Array of NIM trigger counts          |
-| `rfIntensities`    | `int[33]`          | Array for QIE RF intensities         |
+| `fpgaTrigger`     | `int[5]`           | Array of FPGA trigger counts         |
+| `nimTrigger`      | `int[5]`           | Array of NIM trigger counts          |
+| `rfIntensity`    | `int[33]`          | Array for QIE RF intensities         |
 
 ## Hit-Level Variables
 | Variable Name           | Type                     | Description                                  |
 |-------------------------|--------------------------|----------------------------------------------|
-| `detectorIDs`           | `std::vector<int>`       | Detector IDs for all hits                    |
-| `elementIDs`            | `std::vector<int>`       | Element IDs associated with each hit         |
-| `driftDistances`        | `std::vector<double>`    | Drift distances for each hit                 |
-| `tdcTimes`              | `std::vector<double>`    | TDC timing values for each hit               |
+| `detectorID`           | `std::vector<int>`       | Detector IDs for all hits                    |
+| `elementID`            | `std::vector<int>`       | Element IDs associated with each hit         |
+| `driftDistance`        | `std::vector<double>`    | Drift distances for each hit                 |
+| `tdcTime`              | `std::vector<double>`    | TDC timing values for each hit               |
 | `hitInTime`             | `std::vector<bool>`      | Flags indicating if hits are within time     |
 
 ``` Compilation
